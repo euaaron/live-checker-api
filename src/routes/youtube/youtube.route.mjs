@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { handleRequest } from "./service/youtube.mjs";
+import { checkYoutube } from "./service/youtube.mjs";
 
 const YoutubeRoute = Router();
 
@@ -34,14 +34,14 @@ YoutubeRoute.get('/youtube', (req, res, next) => {
   if(!req.query.type || !req.query.id) {
     next();      
   }
-  handleRequest(res);
+  checkYoutube(req.query.type, req.query.id, res);
 });
 
 YoutubeRoute.get('/youtube', (req, res, next) => {
   if(!req.body.type || !req.body.id) {
     next();
   }
-  handleRequest(res);
+  checkYoutube(req.body.type, req.body.id, res);
 });
 
 YoutubeRoute.get('/youtube', (req, res, next) => {
